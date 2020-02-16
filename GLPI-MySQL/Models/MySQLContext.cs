@@ -15,15 +15,7 @@ namespace GLPI_MySQL.Models
 
         public DbSet<Computer> Computers { get; set; }
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    if (!optionsBuilder.IsConfigured)
-        //    {
-        //        optionsBuilder.UseMySql("server=localhost;database=glpi;user=root;pwd=Clars!!2020");
-        //    }
-        //}
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+       protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Computer>(entity =>
             {
