@@ -9,5 +9,6 @@ namespace GLPI_MySQL.Models
     {
         Computer GetComputer(int Id);
         IEnumerable<Computer> GetAllComputers();
+        IEnumerable<Computer> Names();
     }
 }

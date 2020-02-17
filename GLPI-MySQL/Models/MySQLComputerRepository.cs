@@ -14,6 +14,11 @@ namespace GLPI_MySQL.Models
             this.context = context;
         }
 
+        public IEnumerable<Computer> Names()
+        {
+            return context.Computers.ToList();
+        }
+
         public IEnumerable<Computer> GetAllComputers()
         {
             return context.Computers.OrderBy(p => p.Id).Where(s => s.Realname == "Kielban").ToList();

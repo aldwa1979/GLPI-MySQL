@@ -1,0 +1,15 @@
+﻿@model IEnumerable<GLPI_MySQL.Models.UserViewModel>
+
+
+<h1>Index</h1>
+
+
+@foreach (var item in Model)
+{
+    <table>
+        <tr>
+            <td>@item.Firstname</td>
+            <td>@item.Realname</td>
+        </tr>
+    </table>
+}

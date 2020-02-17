@@ -18,5 +18,10 @@ namespace GLPI_MySQL.Models
         {
             throw new NotImplementedException();
         }
+
+        public IEnumerable<Computer> Names()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -43,6 +43,8 @@ namespace GLPI_MySQL
                 app.UseExceptionHandler("/Error");
             }
 
+            app.UseDeveloperExceptionPage();
+            app.UseStatusCodePages();
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
