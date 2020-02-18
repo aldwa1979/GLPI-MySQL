@@ -14,9 +14,9 @@ namespace GLPI_MySQL.Models
             this.context = context;
         }
 
-        public IEnumerable<Computer> Names()
+        public IEnumerable<User> Names()
         {
-            return context.Computers.ToList();
+            return context.Users.ToList();
         }
 
         public IEnumerable<Computer> GetAllComputers()

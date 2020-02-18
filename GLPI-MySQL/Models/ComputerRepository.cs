@@ -23,5 +23,10 @@ namespace GLPI_MySQL.Models
         {
             throw new NotImplementedException();
         }
+
+        IEnumerable<User> IComputerRepository.Names()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
