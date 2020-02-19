@@ -1,0 +1,55 @@
+﻿@model IEnumerable<GLPI_MySQL.Models.Computer>
+
+    <div style="font-family:Arial">
+        <table class="table table-striped" border="1">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Type)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Producer)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Code)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Model)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Serial)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SystemOp)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.ValueFor(model => item.Type)
+                        </td>
+                        <td>
+                            @Html.ValueFor(model => item.Producer)
+                        </td>
+                        <td>
+                            @Html.ValueFor(model => item.Code)
+                        </td>
+
+                        <td>
+                            @Html.ValueFor(model => item.Model)
+                        </td>
+                        <td>
+                            @Html.ValueFor(model => item.Serial)
+                        </td>
+                        <td>
+                            @Html.ValueFor(model => item.SystemOp)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        </div>

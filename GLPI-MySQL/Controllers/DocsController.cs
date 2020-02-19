@@ -17,22 +17,30 @@ namespace GLPI_MySQL.Controllers
             _computerRepository = computerRepository;
         }
 
-        //public IActionResult Index()
-        //{
-        //    var model = _computerRepository.Names().ToList();
-
-        //    return View(model);
-        //}
-
-
-        public IActionResult Index (string searchBy, string search)
+        public IActionResult Index(string searchBy, string search)
         {
-            if (searchBy == "Realname")
-                return View(_computerRepository.Names().Where(p => p.Realname.StartsWith(search) || search == null).ToList());
+            if (search != null)
+            {
+                if (searchBy == "Realname")
+                    return View(_computerRepository.Names().Where(p => p.Realname.Contains(search)).ToList());
+                else
+                    return View(_computerRepository.Names().Where(p => p.Firstname.Contains(search)).ToList());
+            }
             else
-                return View(_computerRepository.Names().Where(p => p.Firstname.StartsWith(search) || search == null).ToList());
+                return View(_computerRepository.Names().ToList());
         }
 
+        //public IActionResult Index(string search)
+        //{
+        //    if (search != null)
+        //        return View(_computerRepository.Names().Where(p => p.Realname.Contains(search)).ToList());
+        //    else
+        //        return View(_computerRepository.Names().ToList());
+        //}
 
+        public IActionResult Details (int id)
+        {
+            return View(_computerRepository.GetComputer(id));
+        }
     }
 }

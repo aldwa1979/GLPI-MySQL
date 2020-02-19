@@ -8,6 +8,7 @@ namespace GLPI_MySQL.Models
     public class Computer
     {
         public int Id { get; set; }
+        public int Id_User { get; set; }
         public string Firstname { get; set; }
         public string Realname { get; set; }
         public string Serial { get; set; }

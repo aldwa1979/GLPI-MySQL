@@ -24,10 +24,9 @@ namespace GLPI_MySQL.Models
             return context.Computers.OrderBy(p => p.Id).Where(s => s.Realname == "Kielban").ToList();
         }
 
-        public Computer GetComputer(int Id)
+        public IEnumerable<Computer> GetComputer(int Id)
         {
-            var comp = context.Computers.Where(p => p.Id == Id);
-            return comp.FirstOrDefault();
-        }
+            return context.Computers.Where(p => p.Id_User == Id).ToList();
+         }
     }
 }

@@ -1,37 +1,48 @@
 ﻿@model IEnumerable<GLPI_MySQL.Models.User>
 
-@using (Html.BeginForm("Index", "Docs", FormMethod.Get))
-{
-    <b>Search by:</b>
-    @Html.RadioButton("searchBy", "Firstname", true) <text>FirstName</text>
-    @Html.RadioButton("searchBy", "Realname", true) <text>Realname</text>
-    <br />
-    @Html.TextBox("search") <input type="submit" value="Search" />
+<form asp-controller="Docs" asp-action="Index" method="get">
+    <p>
+        <b>Search by:</b>
+        @Html.RadioButton("searchBy", "Firstname", true) <text>Imię</text>
+        @Html.RadioButton("searchBy", "Realname", true) <text>Nazwisko</text>
+        <br />
+        <input type="text" name="search" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
 
 
-
-<table border="1">
-    <tr>
-        <th>
-            Firstname
-        </th>
-        <th>
-            Lastname
-        </th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Firstname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Realname)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
         <tr>
             <td>
-                @item.Firstname
+                @Html.DisplayFor(modelItem => item.Id)
             </td>
             <td>
-                @item.Realname
+                @Html.DisplayFor(modelItem => item.Firstname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Realname)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
             </td>
         </tr>
-    }
-
-</table>
-
 }
+    </tbody>
+</table>

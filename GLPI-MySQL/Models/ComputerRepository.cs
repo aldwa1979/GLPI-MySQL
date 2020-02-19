@@ -24,6 +24,11 @@ namespace GLPI_MySQL.Models
             throw new NotImplementedException();
         }
 
+        IEnumerable<Computer> IComputerRepository.GetComputer(int Id)
+        {
+            throw new NotImplementedException();
+        }
+
         IEnumerable<User> IComputerRepository.Names()
         {
             throw new NotImplementedException();
