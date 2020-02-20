@@ -30,17 +30,25 @@ namespace GLPI_MySQL.Controllers
                 return View(_computerRepository.Names().ToList());
         }
 
-        //public IActionResult Index(string search)
-        //{
-        //    if (search != null)
-        //        return View(_computerRepository.Names().Where(p => p.Realname.Contains(search)).ToList());
-        //    else
-        //        return View(_computerRepository.Names().ToList());
-        //}
+        [HttpPost]
+        public IActionResult Index(int id)
+        {
+            PDF_Docs pdf = new PDF_Docs();
+            var docs1 = _computerRepository.GetComputer(id);
+            pdf.PdfDocsSchema(docs1);
+            return RedirectToAction("Index", "Docs");
+        }
+
 
         public IActionResult Details (int id)
         {
             return View(_computerRepository.GetComputer(id));
         }
+
+        //[HttpPost]
+        //public IActionResult Details(int id)
+        //{
+
+        //}
     }
 }
