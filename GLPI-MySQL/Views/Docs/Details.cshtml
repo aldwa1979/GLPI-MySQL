@@ -55,4 +55,7 @@
 </div>
 
 
-<input type="submit" class="btn btn-primary" value="pdf" />
+<form asp-controller="Docs" asp-action="Details" method="post">
+    <input type="submit" class="btn btn-primary" value="Protokół przekazania" asp-action="Handover" asp-route-id="@Model.Select(s => s.Id_User).First()" />
+    <input type="submit" class="btn btn-primary" value="Protokół zdania" asp-action="Return" asp-route-id="@Model.Select(s => s.Id_User).First()" />
+</form>

@@ -12,7 +12,7 @@
 </form>
 
 
-<table class="table table-bordered">
+<table class="table table-bordered table-hover">
     <thead>
         <tr>
             <th>
@@ -40,11 +40,12 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Realname)
                 </td>
-                <td>
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a>
-                        <form asp-controller="Docs" asp-action="Index" method="post">
-                            <input type="submit" class="btn btn-primary" value="Pdf Generator" asp-route-id="@item.Id" />|
-                        </form>
+                <td class="text-center">
+                    <form asp-controller="Docs" asp-action="Index" method="post">
+                        <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        <input type="submit" class="btn btn-primary" value="Protokół przekazania" asp-action="Handover" asp-route-id="@item.Id" />
+                        <input type="submit" class="btn btn-primary" value="Protokół zdania" asp-action="Return" asp-route-id="@item.Id" />
+                    </form>
                 </td>
             </tr>
         }

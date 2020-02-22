@@ -17,5 +17,6 @@ namespace GLPI_MySQL.Models
         public string Model { get; set; }
         public string Type { get; set; }
         public string SystemOp { get; set; }
+        public string ContactNumber { get; set; }
     }
 }

@@ -22,33 +22,40 @@ namespace GLPI_MySQL.Controllers
             if (search != null)
             {
                 if (searchBy == "Realname")
-                    return View(_computerRepository.Names().Where(p => p.Realname.Contains(search)).ToList());
+                    return View(_computerRepository.Names().Where(p => p.Realname.Contains((search), StringComparison.CurrentCultureIgnoreCase)).ToList());
                 else
-                    return View(_computerRepository.Names().Where(p => p.Firstname.Contains(search)).ToList());
+                    return View(_computerRepository.Names().Where(p => p.Firstname.Contains((search), StringComparison.CurrentCultureIgnoreCase)).ToList());
             }
             else
                 return View(_computerRepository.Names().ToList());
         }
 
-        [HttpPost]
-        public IActionResult Index(int id)
+        //Handover Report
+        public IActionResult Handover(int id)
         {
             PDF_Docs pdf = new PDF_Docs();
-            var docs1 = _computerRepository.GetComputer(id);
-            pdf.PdfDocsSchema(docs1);
-            return RedirectToAction("Index", "Docs");
+
+            var docsOut = _computerRepository.GetComputer(id);
+            pdf.PdfDocsSchemaHandover(docsOut);
+
+            return RedirectToAction("Index","Docs");
         }
 
+        //Return Report
+        public IActionResult Return(int id)
+        {
+            PDF_Docs pdf = new PDF_Docs();
+
+            var docsOut = _computerRepository.GetComputer(id);
+            pdf.PdfDocsSchemaReturn(docsOut);
+
+            return RedirectToAction("Index", "Docs");
+        }
 
         public IActionResult Details (int id)
         {
             return View(_computerRepository.GetComputer(id));
         }
 
-        //[HttpPost]
-        //public IActionResult Details(int id)
-        //{
-
-        //}
     }
 }
