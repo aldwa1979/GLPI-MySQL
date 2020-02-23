@@ -19,6 +19,11 @@ namespace GLPI_MySQL.Models
             return context.Users.ToList();
         }
 
+        public IEnumerable<PhoneNumber> GrecosPhoneNumbers()
+        {
+            return context.PhoneNumbers.ToList();
+        }
+
         public IEnumerable<Computer> GetAllComputers()
         {
             return context.Computers.OrderBy(p => p.Id).Where(s => s.Realname == "Kielban").ToList();

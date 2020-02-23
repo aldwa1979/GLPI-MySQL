@@ -1,9 +1,9 @@
-﻿@model IEnumerable<GLPI_MySQL.Models.User>
+﻿@model IEnumerable<GLPI_MySQL.Models.PhoneNumber>
 
-<h2> Generator protokołów</h2>
+<h2> Spis telefonów pracowników GRECOS</h2>
 <br />
 
-<form asp-controller="Docs" asp-action="Index" method="get">
+<form asp-controller="Phones" asp-action="Index" method="get">
     <p>
         <b>Search by:</b>
         @Html.RadioButton("searchBy", "Firstname", true) <text>Imię</text>
@@ -24,7 +24,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.Firstname)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Department)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactNumber)
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -37,14 +42,12 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Firstname)
                 </td>
-                <td class="text-center">
-                    <form asp-controller="Docs" asp-action="Index" method="post">
-                        <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                        <input type="submit" class="btn btn-primary" value="Protokół przekazania" asp-action="HandoverIndex" asp-route-id="@item.Id" />
-                        <input type="submit" class="btn btn-primary" value="Protokół zdania" asp-action="ReturnIndex" asp-route-id="@item.Id" />
-                    </form>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContactNumber)
                 </td>
             </tr>
         }
     </tbody>
-</table>

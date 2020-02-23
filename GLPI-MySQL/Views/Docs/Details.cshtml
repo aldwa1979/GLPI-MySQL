@@ -1,5 +1,12 @@
 ﻿@model IEnumerable<GLPI_MySQL.Models.Computer>
 
+<div>
+    <h2>
+        @Model.Select(p => new { Imie = p.Firstname, Nazwisko = p.Realname }).First().Imie
+        @Model.Select(p => new { Imie = p.Firstname, Nazwisko = p.Realname }).First().Nazwisko
+    </h2>
+</div>
+
 <div style="font-family:Arial">
     <table class="table table-striped" border="1">
         <thead>
@@ -27,7 +34,7 @@
         <tbody>
 
             @foreach (var item in Model)
-            {
+    {
                 <tr>
                     <td>
                         @Html.ValueFor(model => item.Type)
@@ -56,6 +63,6 @@
 
 
 <form asp-controller="Docs" asp-action="Details" method="post">
-    <input type="submit" class="btn btn-primary" value="Protokół przekazania" asp-action="Handover" asp-route-id="@Model.Select(s => s.Id_User).First()" />
-    <input type="submit" class="btn btn-primary" value="Protokół zdania" asp-action="Return" asp-route-id="@Model.Select(s => s.Id_User).First()" />
+    <input type="submit" class="btn btn-primary" value="Protokół przekazania" asp-action="HandoverDetails" asp-route-id="@Model.Select(s => s.Id_User).First()" />
+    <input type="submit" class="btn btn-primary" value="Protokół zdania" asp-action="ReturnDetails" asp-route-id="@Model.Select(s => s.Id_User).First()" />
 </form>

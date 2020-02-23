@@ -31,7 +31,7 @@ namespace GLPI_MySQL.Controllers
         }
 
         //Handover Report
-        public IActionResult Handover(int id)
+        public IActionResult HandoverIndex(int id)
         {
             PDF_Docs pdf = new PDF_Docs();
 
@@ -42,7 +42,7 @@ namespace GLPI_MySQL.Controllers
         }
 
         //Return Report
-        public IActionResult Return(int id)
+        public IActionResult ReturnIndex(int id)
         {
             PDF_Docs pdf = new PDF_Docs();
 
@@ -57,5 +57,28 @@ namespace GLPI_MySQL.Controllers
             return View(_computerRepository.GetComputer(id));
         }
 
+        //Handover Report
+        [HttpPost]
+        public IActionResult HandoverDetails(int id)
+        {
+            PDF_Docs pdf = new PDF_Docs();
+
+            var docsOut = _computerRepository.GetComputer(id);
+            pdf.PdfDocsSchemaHandover(docsOut);
+
+            return RedirectToAction("Details", new { id });
+        }
+
+        //Return Report
+        [HttpPost]
+        public IActionResult ReturnDetails(int id)
+        {
+            PDF_Docs pdf = new PDF_Docs();
+
+            var docsOut = _computerRepository.GetComputer(id);
+            pdf.PdfDocsSchemaReturn(docsOut);
+
+            return RedirectToAction("Details", new { id });
+        }
     }
 }

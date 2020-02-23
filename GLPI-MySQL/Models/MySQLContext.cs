@@ -15,6 +15,7 @@ namespace GLPI_MySQL.Models
 
         public DbSet<Computer> Computers { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<PhoneNumber> PhoneNumbers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -26,6 +27,11 @@ namespace GLPI_MySQL.Models
             modelBuilder.Entity<User>(entity =>
             {
                 entity.ToTable("users");
+            });
+
+            modelBuilder.Entity<PhoneNumber>(entity =>
+            {
+                entity.ToTable("grecosphones");
             });
         }
     }

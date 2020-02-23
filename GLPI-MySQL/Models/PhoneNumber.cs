@@ -6,12 +6,17 @@ using System.Threading.Tasks;
 
 namespace GLPI_MySQL.Models
 {
-    public class User
+    public class PhoneNumber
     {
         public int Id { get; set; }
+        public int Id_User { get; set; }
         [Display(Name = "Imie")]
         public string Firstname { get; set; }
         [Display(Name = "Nazwisko")]
         public string Realname { get; set; }
+        [Display(Name = "Dział")]
+        public string Department { get; set; }
+        [Display(Name = "Numer telefonu")]
+        public string ContactNumber { get; set; }
     }
 }
