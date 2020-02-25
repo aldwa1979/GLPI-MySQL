@@ -18,8 +18,11 @@ namespace GLPI_MySQL.Models
         //Handover Report
         public void PdfDocsSchemaHandover(IEnumerable<Computer> comp)
         {
+            string downloadsPath = Path.Combine(
+                 Environment.GetFolderPath(Environment.SpecialFolder.Desktop));
+                 //"Downloads");
             double x = 0, y = 0;
-            string filename = @"D:\ProtokolPrzekazania.pdf";
+            string filename = downloadsPath + "\\ProtokolPrzekazania.pdf";
 
             //anonimous type to get name and surname of user
             var dane = comp.Select(p => new { Name = p.Firstname, Surname = p.Realname }).FirstOrDefault();
@@ -31,7 +34,7 @@ namespace GLPI_MySQL.Models
             PdfDocument pdfDocument = new PdfDocument();
 
             pdfDocument.Info.Title = ("Protokół Przekazania");
-
+            
             PdfPage page = pdfDocument.AddPage();
             XGraphics gfx = XGraphics.FromPdfPage(page);
 
@@ -115,8 +118,11 @@ namespace GLPI_MySQL.Models
         //Return Protocol
         public void PdfDocsSchemaReturn(IEnumerable<Computer> comp)
         {
+            string downloadsPath = Path.Combine(
+                 Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
+                 "Downloads");
             double x = 0, y = 0;
-            string filename = @"D:\ProtokolZdania.pdf";
+            string filename = downloadsPath + "\\ProtokolZdania.pdf";
 
             //anonimous type to get name and surname of user
             var dane = comp.Select(p => new { Name = p.Firstname, Surname = p.Realname }).FirstOrDefault();
@@ -188,8 +194,8 @@ namespace GLPI_MySQL.Models
 
             try
             {
-                pdfDocument.Save(filename);
-                pdfDocument.Dispose();
+                    pdfDocument.Save(filename);
+                    pdfDocument.Dispose();
             }
 
             catch (IOException ex)

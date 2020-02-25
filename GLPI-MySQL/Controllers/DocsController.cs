@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -38,7 +39,7 @@ namespace GLPI_MySQL.Controllers
             var docsOut = _computerRepository.GetComputer(id);
             pdf.PdfDocsSchemaHandover(docsOut);
 
-            return RedirectToAction("Index","Docs");
+            return RedirectToAction("Index", "Docs");
         }
 
         //Return Report
