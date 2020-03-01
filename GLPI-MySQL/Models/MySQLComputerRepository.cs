@@ -26,12 +26,22 @@ namespace GLPI_MySQL.Models
 
         public IEnumerable<Computer> GetAllComputers()
         {
-            return context.Computers.OrderBy(p => p.Id).Where(s => s.Realname == "Kielban").ToList();
+            return context.Computers.ToList();
         }
 
         public IEnumerable<Computer> GetComputer(int Id)
         {
             return context.Computers.Where(p => p.Id_User == Id).ToList();
          }
+
+        public IQueryable<Computer> GetAllComputersQuery()
+        {
+            return context.Computers;
+        }
+
+        public IQueryable<PhoneNumber> GetAllPhonesQuery()
+        {
+            return context.PhoneNumbers.OrderBy(p=>p.Realname);
+        }
     }
 }

@@ -16,13 +16,10 @@ namespace GLPI_MySQL.Models
     public class PDF_Docs
     {
         //Handover Report
-        public void PdfDocsSchemaHandover(IEnumerable<Computer> comp)
+        public PdfDocument PdfDocsSchemaHandover(IEnumerable<Computer> comp)
         {
-            string downloadsPath = Path.Combine(
-                 Environment.GetFolderPath(Environment.SpecialFolder.Desktop));
-                 //"Downloads");
             double x = 0, y = 0;
-            string filename = downloadsPath + "\\ProtokolPrzekazania.pdf";
+            //string filename = "ProtokolPrzekazania.pdf";
 
             //anonimous type to get name and surname of user
             var dane = comp.Select(p => new { Name = p.Firstname, Surname = p.Realname }).FirstOrDefault();
@@ -79,6 +76,7 @@ namespace GLPI_MySQL.Models
                         break;
 
                     default:
+                        y -= 30;
                         break;
                 }
             }
@@ -104,8 +102,7 @@ namespace GLPI_MySQL.Models
 
             try
             {
-                pdfDocument.Save(filename);
-                pdfDocument.Dispose();
+                return pdfDocument;
             }
 
             catch (IOException ex)
@@ -116,13 +113,10 @@ namespace GLPI_MySQL.Models
         }
 
         //Return Protocol
-        public void PdfDocsSchemaReturn(IEnumerable<Computer> comp)
+        public PdfDocument PdfDocsSchemaReturn(IEnumerable<Computer> comp)
         {
-            string downloadsPath = Path.Combine(
-                 Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
-                 "Downloads");
             double x = 0, y = 0;
-            string filename = downloadsPath + "\\ProtokolZdania.pdf";
+            //string filename = "ProtokolZdania.pdf";
 
             //anonimous type to get name and surname of user
             var dane = comp.Select(p => new { Name = p.Firstname, Surname = p.Realname }).FirstOrDefault();
@@ -179,6 +173,7 @@ namespace GLPI_MySQL.Models
                         break;
 
                     default:
+                        y -= 30;
                         break;
                 }
             }
@@ -194,8 +189,7 @@ namespace GLPI_MySQL.Models
 
             try
             {
-                    pdfDocument.Save(filename);
-                    pdfDocument.Dispose();
+                return pdfDocument;
             }
 
             catch (IOException ex)
@@ -204,6 +198,5 @@ namespace GLPI_MySQL.Models
             }
 
         }
-
     }
 }

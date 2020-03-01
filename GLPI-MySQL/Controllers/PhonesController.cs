@@ -28,5 +28,14 @@ namespace GLPI_MySQL.Controllers
             else
                 return View(_computerRepository.GrecosPhoneNumbers().OrderBy(p=>p.Realname).ToList());
         }
+
+        public IActionResult PhoneReport()
+        {
+            IQueryable<PhoneNumber> phoneQuery = _computerRepository.GetAllPhonesQuery();
+
+            var report = new Excel_Docs().GetPhoneReport(phoneQuery);
+
+            return File(report, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "ListaNumerow.xlsx");
+        }
     }
 }

@@ -11,5 +11,7 @@ namespace GLPI_MySQL.Models
         IEnumerable<Computer> GetAllComputers();
         IEnumerable<User> Names();
         IEnumerable<PhoneNumber> GrecosPhoneNumbers();
+        IQueryable<Computer> GetAllComputersQuery();
+        IQueryable<PhoneNumber> GetAllPhonesQuery();
     }
 }

@@ -35,22 +35,28 @@ namespace GLPI_MySQL.Controllers
         public IActionResult HandoverIndex(int id)
         {
             PDF_Docs pdf = new PDF_Docs();
-
             var docsOut = _computerRepository.GetComputer(id);
-            pdf.PdfDocsSchemaHandover(docsOut);
 
-            return RedirectToAction("Index", "Docs");
+            using (MemoryStream stream = new MemoryStream())
+            {
+                var document = new PDF_Docs().PdfDocsSchemaHandover(docsOut);
+                document.Save(stream, false);
+                return File(stream.ToArray(), "application/pdf");
+            }
         }
 
         //Return Report
         public IActionResult ReturnIndex(int id)
         {
             PDF_Docs pdf = new PDF_Docs();
-
             var docsOut = _computerRepository.GetComputer(id);
-            pdf.PdfDocsSchemaReturn(docsOut);
 
-            return RedirectToAction("Index", "Docs");
+            using (MemoryStream stream = new MemoryStream())
+            {
+                var document = new PDF_Docs().PdfDocsSchemaReturn(docsOut);
+                document.Save(stream, false);
+                return File(stream.ToArray(), "application/pdf");
+            }
         }
 
         public IActionResult Details (int id)
@@ -59,27 +65,31 @@ namespace GLPI_MySQL.Controllers
         }
 
         //Handover Report
-        [HttpPost]
         public IActionResult HandoverDetails(int id)
         {
             PDF_Docs pdf = new PDF_Docs();
-
             var docsOut = _computerRepository.GetComputer(id);
-            pdf.PdfDocsSchemaHandover(docsOut);
 
-            return RedirectToAction("Details", new { id });
+            using (MemoryStream stream = new MemoryStream())
+            {
+                var document = new PDF_Docs().PdfDocsSchemaHandover(docsOut);
+                document.Save(stream, false);
+                return File(stream.ToArray(), "application/pdf");
+            }
         }
 
         //Return Report
-        [HttpPost]
         public IActionResult ReturnDetails(int id)
         {
             PDF_Docs pdf = new PDF_Docs();
-
             var docsOut = _computerRepository.GetComputer(id);
-            pdf.PdfDocsSchemaReturn(docsOut);
 
-            return RedirectToAction("Details", new { id });
+            using (MemoryStream stream = new MemoryStream())
+            {
+                var document = new PDF_Docs().PdfDocsSchemaReturn(docsOut);
+                document.Save(stream, false);
+                return File(stream.ToArray(), "application/pdf");
+            }
         }
     }
 }

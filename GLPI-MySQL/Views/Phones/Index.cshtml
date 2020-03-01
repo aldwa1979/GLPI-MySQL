@@ -11,9 +11,15 @@
         <br />
         <input type="text" name="search" />
         <input type="submit" value="Filter" />
+
+        @* <a style="margin-right: 10px;" href="@Url.Action("PhoneReport", "Phones")" role="button" class="btn btn-primary pull-right">*@
+        <a style="margin-right: 10px;" asp-action="PhoneReport" asp-controller="Phones" role="button" class="btn btn-primary pull-right">
+
+            <span class="glyphicon glyphicon-cloud-download"></span>
+            Lista numerów
+        </a>
     </p>
 </form>
-
 
 <table class="table table-bordered table-hover">
     <thead>
