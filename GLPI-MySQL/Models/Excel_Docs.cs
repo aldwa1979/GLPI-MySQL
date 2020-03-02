@@ -9,16 +9,16 @@ namespace GLPI_MySQL.Models
     {
         public byte[] GetPhoneReport(IQueryable<PhoneNumber> phones)
         {
-            var phoneReport = new PhoneReport
+            PhoneReport phoneReport = new PhoneReport
             {
-                PhoneNumberRows = phones.Select(f => GetPhoneRow(f)),
+                PhoneNumberRows = phones.Select(f => GetPhoneRow(f))
             };
             return phoneReport.Export();
         }
 
         private PhoneRow GetPhoneRow(PhoneNumber phoneNumber)
         {
-            var phoneRow = new PhoneRow()
+            PhoneRow phoneRow = new PhoneRow()
             {
                 PhoneNumber = GetPhoneData(phoneNumber)
             };
@@ -34,6 +34,39 @@ namespace GLPI_MySQL.Models
                 Realname = phoneNumber.Realname,
                 Department = phoneNumber.Department,
                 ContactNumber = phoneNumber.ContactNumber
+            };
+        }
+
+        public byte[] GetEquipmentReport(IQueryable<Computer> computer)
+        {
+            EquipmentReport equipmentReport = new EquipmentReport
+            {
+                EquipmentRow = computer.Select(f => GetEquipmentRow(f))
+            };
+            return equipmentReport.Export();
+        }
+
+        private EquipmentRow GetEquipmentRow(Computer computer)
+        {
+            EquipmentRow equipmentRow = new EquipmentRow()
+            {
+                Computer = GetEquipmentData(computer)
+            };
+
+            return equipmentRow;
+        }
+
+        private Computer GetEquipmentData(Computer computer)
+        {
+            return new Computer
+            {
+                Firstname = computer.Firstname,
+                Realname = computer.Realname,
+                Type = computer.Type,
+                Producer = computer.Producer,
+                Code = computer.Code,
+                Model = computer.Model,
+                Serial = computer.Serial
             };
         }
     }

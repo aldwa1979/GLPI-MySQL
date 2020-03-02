@@ -91,5 +91,15 @@ namespace GLPI_MySQL.Controllers
                 return File(stream.ToArray(), "application/pdf");
             }
         }
+
+        public IActionResult EquipmentReport()
+        {
+            IQueryable<Computer> equipmentQuery = _computerRepository.GetAllComputersQuery();
+
+            var report = new Excel_Docs().GetEquipmentReport(equipmentQuery);
+
+            return File(report, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "ListaSprzetu.xlsx");
+        }
+
     }
 }
