@@ -29,7 +29,9 @@ namespace GLPI_MySQL
             //    options.MinimumSameSitePolicy = SameSiteMode.None;
             //});
 
+            services.AddDbContext<CennikDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionCenniki")));
             services.AddDbContext<MySQLContext>(options => options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddTransient<ICennikiRepository, CennikiDBRepository>();
             services.AddTransient<IComputerRepository, MySQLComputerRepository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

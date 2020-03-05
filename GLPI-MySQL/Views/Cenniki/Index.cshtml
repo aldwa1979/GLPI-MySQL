@@ -1,0 +1,46 @@
+﻿@model IEnumerable<GLPI_MySQL.Models.Cenniki>
+
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.DataRezerwacji)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Hotel)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.KodPokoju)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DataWylotu)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cena)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataRezerwacji)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hotel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KodPokoju)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataWylotu)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cena)
+                </td>
+            </tr>
+            }
+        </tbody>
+
+
