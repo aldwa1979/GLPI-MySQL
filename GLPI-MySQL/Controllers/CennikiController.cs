@@ -18,7 +18,9 @@ namespace GLPI_MySQL.Controllers
 
         public IActionResult Index()
         {
-            var model = _cennikiRepository.GetCenniki();
+            DateTime dataRezerwacji = DateTime.Parse("09.03.2020 00:00:00");
+
+            var model = _cennikiRepository.GetCenniki(dataRezerwacji);
             return View(model);
         }
     }

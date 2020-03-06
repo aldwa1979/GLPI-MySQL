@@ -7,7 +7,7 @@ namespace GLPI_MySQL.Models
 {
     public interface ICennikiRepository
     {
-        IEnumerable<Cenniki> GetCenniki();
+        IEnumerable<Cenniki> GetCenniki(DateTime date);
         
     }
 }

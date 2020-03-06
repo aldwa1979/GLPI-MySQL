@@ -16,15 +16,18 @@ namespace GLPI_MySQL.Models
             this.context = context;
         }
 
-        public IEnumerable<Cenniki> GetCenniki()
+        public IEnumerable<Cenniki> GetCenniki(DateTime date)
         {
+            int year = date.Year;
+            string month = date.Month.ToString("d2");
+
             object[] param =
             {
-                new SqlParameter("@Month", "12"),
-                new SqlParameter("@Year", "2019")
+                new SqlParameter("@Month", month),
+                new SqlParameter("@Year", year)
             };
-            
-            return context.Cenniki.FromSql("cenniki @Year , @Month", param).ToList();
+
+            return context.Cenniki.FromSql("Cenniki @Year, @Month", param).ToList();
         }
     }
 }
