@@ -140,8 +140,8 @@ namespace GLPI_MySQL.Models
             gfx.DrawString($"Poznań {DateTime.Now.ToShortDateString().ToString()}", font, XBrushes.Black, new XPoint(450, 30));
             gfx.DrawString("60-311 Poznań", font, XBrushes.Black, new XPoint(30, 70));
             gfx.DrawString("PROTOKÓŁ ZDAWCZO-ODBIORCZY", fontBold, XBrushes.Black, new XPoint(200, 130));
-            gfx.DrawString("PRZEKAZUJĄCY: Tomasz Fąs", font, XBrushes.Black, new XPoint(30, 160));
-            gfx.DrawString($"PRZYJMUJĄCY: {dane.Name} {dane.Surname}", font, XBrushes.Black, new XPoint(30, 190));
+            gfx.DrawString($"PRZEKAZUJĄCY: {dane.Name} {dane.Surname}", font, XBrushes.Black, new XPoint(30, 160));
+            gfx.DrawString("PRZYJMUJĄCY: Tomasz Fąs", font, XBrushes.Black, new XPoint(30, 190));
             gfx.DrawString("W dniu dziesiejszym przekazujący zwraca firmie", font, XBrushes.Black, new XPoint(30, 220));
             gfx.DrawString("Grecos Holiday Sp. z o.o. z siedzibą przy ul. Grunwaldzkiej 76A", fontBold, XBrushes.Black, new XPoint(250, 220));
             gfx.DrawString("w Poznaniu,", fontBold, XBrushes.Black, new XPoint(30, y = 235));

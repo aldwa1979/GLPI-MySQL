@@ -18,6 +18,7 @@ namespace GLPI_MySQL.Models
 
         public IEnumerable<Cenniki> GetCenniki(DateTime date)
         {
+            
             int year = date.Year;
             string month = date.Month.ToString("d2");
 
