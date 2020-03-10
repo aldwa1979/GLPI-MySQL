@@ -43,7 +43,7 @@ namespace GLPI_MySQL.Controllers
             };
 
             var model = _cennikiRepository
-                .GetCenniki(dataRezerwacji)
+                .GetCenniki(cenniki)
                 .Where(p=> 
                     p.Hotel == searchKodHotel &&
                     p.RolaOsoby == searchRolaOsoby &&
