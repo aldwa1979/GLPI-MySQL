@@ -18,17 +18,29 @@ namespace GLPI_MySQL.Controllers
 
         public IActionResult Index()
         {
-            DateTime dataRezerwacji = DateTime.Parse("09.03.2020 00:00:00");
+            DateTime dataRezerwacji = DateTime.Parse("01.01.2019 00:00:00");
 
             var model = _cennikiRepository.GetCenniki(dataRezerwacji);
-
-            return View(model);
+            
+            return View(model);          
         }
 
         [HttpPost]
-        public IActionResult Index(string searchKodHotel, string searchRolaOsoby, DateTime searchDataCennika, DateTime? searchDataPobytu, string searchAirportPL, string searchAirportGR, string searchKodPokoju, string searchOkres, string searchWyzywienie)
+        public IActionResult Index(string searchKodHotel, DateTime searchDataCennika ,string searchRolaOsoby = null,  DateTime? searchDataPobytu = null, string searchAirportPL = null, string searchAirportGR = null, string searchKodPokoju = null, string searchOkres = null, string searchWyzywienie = null)
         {
             DateTime dataRezerwacji = searchDataCennika;
+            string airport = null;
+
+            if (searchAirportPL != null && searchAirportGR != null)
+            {
+                airport = searchAirportPL+searchAirportGR;
+            }
+            else
+            {
+                airport = null;
+            }
+
+            IEnumerable<Cenniki> model;
 
             Cenniki cenniki = new Cenniki()
             {
@@ -42,18 +54,15 @@ namespace GLPI_MySQL.Controllers
                 Wyzywienie = searchWyzywienie
             };
 
-            var model = _cennikiRepository
-                .GetCenniki(cenniki)
-                .Where(p=> 
-                    p.Hotel == searchKodHotel &&
-                    p.RolaOsoby == searchRolaOsoby &&
-                    p.KodPokoju == searchKodPokoju &&
-                    p.Okres == searchOkres &&
-                    p.DataRezerwacji == searchDataCennika && 
-                    p.DataWylotu == searchDataPobytu &&
-                    p.Lotnisko == searchAirportPL + searchAirportGR &&
-                    p.Wyzywienie == searchWyzywienie
-                        );
+            model = _cennikiRepository
+            .GetCenniki(cenniki)
+            .Where(a =>
+                (searchRolaOsoby != null ? a.RolaOsoby == searchRolaOsoby : true) &&
+                (searchOkres != null ? a.Okres == searchOkres : true) &&
+                (searchKodPokoju != null ? a.KodPokoju == searchKodPokoju : true) &&
+                (searchDataPobytu != null ? a.DataWylotu == searchDataPobytu : true) &&
+                (searchWyzywienie != null ? a.Wyzywienie == searchWyzywienie : true) &&
+                (airport != null ? a.Lotnisko.ToLower() == airport.ToLower() : true));
 
             return View(model);
         }
