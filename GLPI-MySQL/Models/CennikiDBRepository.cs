@@ -32,7 +32,7 @@ namespace GLPI_MySQL.Models
                 new SqlParameter("@Hotel", hotel)
             };
 
-            return context.Cenniki.FromSql("Cenniki @Year, @Month, @Hotel, @DateOfBC", param).Take(10).ToList();
+            return context.Cenniki.FromSql("Cenniki @Year, @Month, @Hotel, @DateOfBC", param).Take(0).ToList();
         }
 
         public IEnumerable<Cenniki> GetCenniki(Cenniki cenniki)

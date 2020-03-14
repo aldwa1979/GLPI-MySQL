@@ -1,5 +1,8 @@
 ﻿@model IEnumerable<GLPI_MySQL.Models.Cenniki>
 
+<h2> Archiwalne Cenniki</h2>
+<br />
+
 @using (Html.BeginForm("Index", "Cenniki", FormMethod.Post))
 {
     <table class="table table-striped" border="1">
@@ -9,7 +12,8 @@
                     Hotel
                 </td>
                 <td>
-                    @Html.TextBox("searchKodHotel")
+                    @Html.TextBox("searchKodHotel", null, new { required = "required" })
+
                 </td>
                 <td>
                     Kod pokoju
@@ -56,13 +60,13 @@
                     Data cennika
                 </td>
                 <td>
-                    @Html.TextBox("searchDataCennika", null, new { type = "date" })
+                    @Html.TextBox("searchDataCennika", null, new { type = "date" , required="required"})
                 </td>
                 <td>
                     Data rozpoczęcia pobytu
                 </td>
                 <td>
-                    @Html.TextBox("searchDataPobytu", null, new { type = "date" })
+                    @Html.TextBox("searchDataPobytu", null, new { type = "date" , required = "required"})
                 </td>
             </tr>
             <tr>
@@ -81,7 +85,7 @@
                                    new SelectListItem {Text = "Bydgoszcz", Value = "bzg"},
                                    new SelectListItem {Text = "Rzeszów", Value = "rze"},
                                    new SelectListItem {Text = "Łódź", Value = "lcj"}
-                           }, "")
+                           }, "" , new { required = "required" })
                 </td>
                 <td>
                     Przylot
@@ -104,7 +108,7 @@
                 new SelectListItem {Text = "Kreta wschodnia", Value = "her"},
                 new SelectListItem {Text = "Rodos", Value = "rho"},
                 new SelectListItem {Text = "Cypr", Value = "lca"}
-        }, "")
+        }, "" , new { required = "required" })
                 </td>
 
             </tr>

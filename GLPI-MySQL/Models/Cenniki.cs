@@ -9,6 +9,7 @@ namespace GLPI_MySQL.Models
     public class Cenniki
     {
         public long ID { get; set; }
+        [Required]
         [Display(Name = "Kod hotelu")]
         public string Hotel { get; set; }
         [Display(Name = "Osoba")]
@@ -17,6 +18,7 @@ namespace GLPI_MySQL.Models
         public string KodPokoju { get; set; }
         [Display(Name = "Długość pobytu")]
         public string Okres { get; set; }
+        [Required(ErrorMessage = "Proszę wpisać kod hotelu")]
         [DisplayFormat(DataFormatString = "{0:d}")]
         [Display(Name = "Data cennika")]
         public DateTime DataRezerwacji { get; set; }
@@ -27,7 +29,7 @@ namespace GLPI_MySQL.Models
         [Display(Name = "Wyżywienie")]
         public string Wyzywienie { get; set; }
         [Display(Name = "Cena")]
-        public int Cena { get; set; }
+        public int? Cena { get; set; }
         [Display(Name = "Cennik")]
         public string Kategoria { get; set; }
     }
