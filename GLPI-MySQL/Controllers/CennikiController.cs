@@ -4,9 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using GLPI_MySQL.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GLPI_MySQL.Controllers
 {
+    [Authorize]
     public class CennikiController : Controller
     {
         private readonly ICennikiRepository _cennikiRepository;
@@ -18,7 +20,7 @@ namespace GLPI_MySQL.Controllers
 
         public IActionResult Index()
         {
-            DateTime dataRezerwacji = DateTime.Parse("01.01.2019 00:00:00");
+            DateTime dataRezerwacji = DateTime.Parse("01.01.2020 00:00:00");
 
             var model = _cennikiRepository.GetCenniki(dataRezerwacji);
             

@@ -1,6 +1,7 @@
 using GLPI_MySQL.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -28,7 +29,8 @@ namespace GLPI_MySQL
             //    options.CheckConsentNeeded = context => true;
             //    options.MinimumSameSitePolicy = SameSiteMode.None;
             //});
-
+            services.AddDbContextPool<GrecosUserDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionEmployee")));
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<GrecosUserDBContext>();
             services.AddDbContext<CennikDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionCenniki")));
             services.AddDbContext<MySQLContext>(options => options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
             services.AddTransient<ICennikiRepository, CennikiDBRepository>();
@@ -52,7 +54,7 @@ namespace GLPI_MySQL
             app.UseStatusCodePages();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
+            app.UseAuthentication();
             app.UseMvc(routes =>
             {
                 routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");

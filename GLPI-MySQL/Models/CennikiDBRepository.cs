@@ -22,7 +22,7 @@ namespace GLPI_MySQL.Models
             int year = date.Year;
             string month = date.Month.ToString("d2");
             string dateOfBC = $"\'{date.ToString("yyyy-MM-dd")}\'";
-            string hotel = $"\'ATHGALI\'";
+            string hotel = $"\'ATHKIBE\'";
 
             object[] param =
             {

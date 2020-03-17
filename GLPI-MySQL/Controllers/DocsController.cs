@@ -5,10 +5,12 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using GLPI_MySQL.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GLPI_MySQL.Controllers
 {
+    [Authorize]
     public class DocsController : Controller
     {
         private readonly IComputerRepository _computerRepository;

@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@inject SignInManager<IdentityUser> signInManager;
+
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -19,7 +21,28 @@
                     <li><a asp-controller="Phones" asp-action="Index" class="navbar-brand">Telefony</a></li>
                     <li><a asp-controller="Cenniki" asp-action="Index" class="navbar-brand">Cenniki</a></li>
                 </ul>
+                <ul class="nav navbar-nav">
+                    @if (signInManager.IsSignedIn(User))
+                    {
+                        <li>
+                            <form method="post" asp-action="logout" asp-controller="account" class="navbar-brand">
+                                <button type="submit">
+                                    Logout @User.Identity.Name
+                                </button>
+                            </form>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a asp-action="register" asp-controller="account" class="navbar-brand">Register</a>
+                        </li>
 
+                        <li>
+                            <a asp-action="login" asp-controller="account" class="navbar-brand">Login</a>
+                        </li>
+                    }
+                </ul>
             </div>
         </div>
     </nav>
