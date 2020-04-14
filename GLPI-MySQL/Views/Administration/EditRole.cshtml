@@ -48,8 +48,7 @@
             }
         </div>
         <div class="card-footer">
-            <a href="#" style="width:auto" class="btn btn-primary">Add Users</a>
-            <a href="#" style="width:auto" class="btn btn-primary">Remove Users</a>
+            <a asp-action="EditUserInRole" asp-controller="Administration" asp-route-roleId="@Model.Id" style="width:auto" class="btn btn-primary">Add or remove users</a>
         </div>
     </div>
 

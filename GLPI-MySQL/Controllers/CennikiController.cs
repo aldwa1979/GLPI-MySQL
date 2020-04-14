@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace GLPI_MySQL.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class CennikiController : Controller
     {
         private readonly ICennikiRepository _cennikiRepository;

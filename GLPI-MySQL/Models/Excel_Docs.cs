@@ -32,7 +32,9 @@ namespace GLPI_MySQL.Models
             {
                 Firstname = phoneNumber.Firstname,
                 Realname = phoneNumber.Realname,
+                Position = phoneNumber.Position,
                 Department = phoneNumber.Department,
+                Team = phoneNumber.Team,
                 ContactNumber = phoneNumber.ContactNumber
             };
         }

@@ -25,8 +25,10 @@ namespace GLPI_MySQL.Models
         {
             sheet.Cells["A1"].Value = "Nazwisko";
             sheet.Cells["B1"].Value = "Imie";
-            sheet.Cells["C1"].Value = "Dział";
-            sheet.Cells["D1"].Value = "Numer telefonu";
+            sheet.Cells["C1"].Value = "Stanowisko";
+            sheet.Cells["D1"].Value = "Dział";
+            sheet.Cells["E1"].Value = "Zespół";
+            sheet.Cells["F1"].Value = "Numer telefonu";
             return sheet;
         }
 
@@ -38,8 +40,10 @@ namespace GLPI_MySQL.Models
             {
                 sheet.Cells[$"A{currentRow}"].Value = row.PhoneNumber.Realname;
                 sheet.Cells[$"B{currentRow}"].Value = row.PhoneNumber.Firstname;
-                sheet.Cells[$"C{currentRow}"].Value = row.PhoneNumber.Department;
-                sheet.Cells[$"D{currentRow}"].Value = row.PhoneNumber.ContactNumber;
+                sheet.Cells[$"C{currentRow}"].Value = row.PhoneNumber.Position;
+                sheet.Cells[$"D{currentRow}"].Value = row.PhoneNumber.Department;
+                sheet.Cells[$"E{currentRow}"].Value = row.PhoneNumber.Team;
+                sheet.Cells[$"F{currentRow}"].Value = row.PhoneNumber.ContactNumber;
                 currentRow++;
             }
 

@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GLPI_MySQL.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class DocsController : Controller
     {
         private readonly IComputerRepository _computerRepository;
